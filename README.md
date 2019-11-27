@@ -29,7 +29,6 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
   * 社内でエンジニアおよび人事担当者が確認
 * コア要件
   * 作成実績が簡単に見れる
-  * Qiita記事が読める
   * 人となりがわかる
 * コアペイン
   * ページが遅い
