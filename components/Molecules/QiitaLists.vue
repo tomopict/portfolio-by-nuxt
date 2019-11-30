@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:max-w-md rounded overflow-hidden shadow-lg aaa">
+  <div class="sm:max-w-md rounded overflow-hidden shadow-lg">
     <div class="px-6 py-4">
       <h3 class="font-bold text-xl mb-2">
         <a :href="post.url" target="_blank" rel="nofollow">
@@ -8,20 +8,15 @@
       </h3>
       <p class="text-gray-700 text-base">{{ postBody }}</p>
     </div>
-    <div class="px-6 py-4">
-      <span
+    <div class="px-6 py-4 flex flex-wrap">
+      <BaseTag
         v-for="tag in post.tags"
         :key="tag.name"
-        class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 hover:bg-blue-500 hover:text-white mb-2"
-      >
-        <a
-          :href="'https://qiita.com/tags/' + tag.name"
-          target="_blank"
-          rel="nofollow"
-        >
-          {{ tag.name }}
-        </a>
-      </span>
+        :tag="tag"
+        :url="'https://qiita.com/tags/'"
+        target="_blank"
+        rel="nofollow"
+      />
     </div>
   </div>
 </template>
@@ -37,7 +32,7 @@ import VClamp from 'vue-clamp'
     VClamp
   }
 })
-export default class QiitaList extends Vue {
+export default class QiitaLists extends Vue {
   @Prop({ required: true })
   post!: PostLists
 
@@ -46,14 +41,6 @@ export default class QiitaList extends Vue {
     const bodySlice = body.substr(0, 50)
     return bodySlice
   }
-
-  public mounted(): void {
-    console.log('aaa')
-  }
 }
 </script>
-<style lang="scss" scoped>
-.aaa {
-  height: 100%;
-}
-</style>
+<style lang="scss" scoped></style>
