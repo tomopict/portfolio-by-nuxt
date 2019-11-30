@@ -1,7 +1,6 @@
 <template>
   <section class="container">
     <div>
-      <logo />
       <div id="cloud-circle"></div>
       <svg width="0" height="0">
         <filter id="filter">
@@ -20,33 +19,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-// import { Component, Vue } from 'nuxt-property-decorator'
 import { ref, computed, watch, onMounted } from '@vue/composition-api'
 import { fetchWeatherData } from '@/services/fetchWeatherData'
 
-// @Component({
-//   components: {
-//     Logo: () => import('~/components/Logo.vue')
-//   },
-//   asyncData() {
-//     return fetchWeatherData({
-//       q: 'tokyo',
-//       APPID: `${process.env.WEATHER}`
-//     })
-//       .then(res => {
-//         return {
-//           weatherData: res.data
-//         }
-//       })
-//       .catch(e => {
-//         console.log(e)
-//       })
-//   }
-// })
 export default Vue.extend({
-  components: {
-    Logo: () => import('~/components/Logo.vue')
-  },
   setup() {
     // State
     const money = ref(10)
