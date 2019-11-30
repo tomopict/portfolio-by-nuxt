@@ -13,18 +13,66 @@
           <feDisplacementMap in="SourceGraphic" scale="180" />
         </filter>
       </svg>
-      <p>{{ post }}</p>
     </div>
+    <BaseIcon />
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import Vue from 'vue'
+// import { Component, Vue } from 'nuxt-property-decorator'
+import { ref, computed, watch, onMounted } from '@vue/composition-api'
 import { fetchWeatherData } from '@/services/fetchWeatherData'
 
-@Component({
+// @Component({
+//   components: {
+//     Logo: () => import('~/components/Logo.vue')
+//   },
+//   asyncData() {
+//     return fetchWeatherData({
+//       q: 'tokyo',
+//       APPID: `${process.env.WEATHER}`
+//     })
+//       .then(res => {
+//         return {
+//           weatherData: res.data
+//         }
+//       })
+//       .catch(e => {
+//         console.log(e)
+//       })
+//   }
+// })
+export default Vue.extend({
   components: {
     Logo: () => import('~/components/Logo.vue')
+  },
+  setup() {
+    // State
+    const money = ref(10)
+    const delta = ref(1)
+
+    // Computed props
+    const formattedMoney = computed(() => money.value.toFixed(2))
+
+    // Hooks
+    onMounted(() => console.log('Clock Object mounted'))
+
+    // Methods
+    const add = () => (money.value += Number(delta.value))
+
+    // Watchers
+    const moneyWatch = watch(money, (newVal, oldVal) =>
+      console.log('Money changed', newVal, oldVal)
+    )
+
+    return {
+      delta,
+      money,
+      formattedMoney,
+      add,
+      moneyWatch
+    }
   },
   asyncData() {
     return fetchWeatherData({
@@ -32,9 +80,8 @@ import { fetchWeatherData } from '@/services/fetchWeatherData'
       APPID: `${process.env.WEATHER}`
     })
       .then(res => {
-        console.log(res.data)
         return {
-          post: res.data
+          weatherData: res.data
         }
       })
       .catch(e => {
@@ -42,12 +89,6 @@ import { fetchWeatherData } from '@/services/fetchWeatherData'
       })
   }
 })
-export default class Index extends Vue {
-  public mounted(): void {
-    console.log('mounted')
-    console.log(this)
-  }
-}
 </script>
 
 <style>
