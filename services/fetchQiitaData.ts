@@ -3,5 +3,5 @@ import httpClient from './http-client'
 import { PostLists } from '@/models/Post'
 
 export const fetchQiitaData = (config?: AxiosRequestConfig): AxiosPromise => {
-  return httpClient.get(`https://qiita.com/api/v2/users/tomopict/items`, config)
+  return httpClient.get(`${process.env.QiitaApi}/users/tomopict/items`, config)
 }

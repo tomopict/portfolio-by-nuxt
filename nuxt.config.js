@@ -1,4 +1,6 @@
 require('dotenv').config()
+const environment = process.env.NODE_ENV
+const envSet = require(`./env.${environment}.js`)
 
 module.exports = {
   mode: 'universal',
@@ -60,14 +62,12 @@ module.exports = {
         ['@babel/plugin-proposal-class-properties', { loose: true }]
       ]
     },
-    transpile: ['vue-clamp', 'resize-detector'],
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
+    transpile: ['vue-clamp', 'resize-detector']
   },
+  dev: process.env.NODE_ENV !== 'production',
   env: {
     Qiita: process.env.QIITA_TOKEN,
-    WEATHER: process.env.WEATHER_TOKEN
+    WEATHER: process.env.WEATHER_TOKEN,
+    QiitaApi: envSet.qiitaApiBaseUrl
   }
 }

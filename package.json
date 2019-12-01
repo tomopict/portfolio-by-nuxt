@@ -5,10 +5,11 @@
   "author": "tomoki nakama",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
+    "serve:dev": "cross-env NODE_ENV=\"development\" nuxt --port 4000",
+    "serve:prod": "cross-env NODE_ENV=\"production\" nuxt --port 4000",
+    "build:prod": "cross-env NODE_ENV=\"production\" nuxt build",
+    "start:prod": "cross-env NODE_ENV=\"production\" nuxt start",
+    "generate:prod": "cross-env NODE_ENV=\"production\" nuxt generate",
     "test": "jest",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
@@ -18,6 +19,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/tailwindcss": "^1.1.2",
     "@vue/composition-api": "^0.3.2",
+    "cross-env": "^6.0.3",
     "eslint": "^6.4.0",
     "eslint-loader": "^3.0.0",
     "eslint-plugin-nuxt": "^0.4.3",
@@ -37,6 +39,7 @@
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.1.0",
+    "json-server": "^0.15.1",
     "prettier": "^1.16.4",
     "vue-jest": "^4.0.0-0"
   }
