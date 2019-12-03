@@ -15,8 +15,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { PostLists } from '@/models/Post'
-import { fetchQiitaData } from '@/services/fetchQiitaData'
+import { PostLists } from '@/models/QiitaPost'
+import { fetchQiitaUserData } from '@/services/fetchQiitaData'
 
 import QiitaLists from '@/components/Molecules/QiitaLists.vue'
 
@@ -33,7 +33,7 @@ export default class QiitaPostLists extends Vue {
   }
   async getQiitaLists(): Promise<void> {
     try {
-      const res = await fetchQiitaData({
+      const res = await fetchQiitaUserData({
         headers: {
           Authorization: `Bearer ${process.env.Qiita}`
         }
