@@ -56,6 +56,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    analyze: true,
     babel: {
       plugins: [
         ['@babel/plugin-proposal-decorators', { legacy: true }],
