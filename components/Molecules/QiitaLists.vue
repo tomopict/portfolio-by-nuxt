@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { PostLists } from 'models/Post'
+import { PostLists } from 'models/QiitaPost'
 
 import VClamp from 'vue-clamp'
 
