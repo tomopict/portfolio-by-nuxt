@@ -25,4 +25,5 @@ $(npm bin)/json-server --watch db.json --routes routes.json -p 4001
 
 ```
 
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
