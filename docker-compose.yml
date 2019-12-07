@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nuxt:
+    container_name: portfolio
+    # Dockerfileの場所
+    build: ./docker
+    tty: true
+    stdin_open: true
+    # コンテナ起動時のコマンド
+    command: yarn serve:prod
+    # ホストOSとコンテナ内でソースコードを共有
+    volumes:
+      - .:/app
+    # コンテナ内部4000を外部から4000でアクセス
+    ports:
+      - "4000:4000"
