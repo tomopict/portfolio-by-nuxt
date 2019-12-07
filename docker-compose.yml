@@ -8,7 +8,8 @@ services:
     tty: true
     stdin_open: true
     # コンテナ起動時のコマンド
-    command: yarn serve:prod
+    # 初回起動時は時間がかかる
+    command: bash -c "yarn && yarn serve:prod"
     # ホストOSとコンテナ内でソースコードを共有
     volumes:
       - .:/app
