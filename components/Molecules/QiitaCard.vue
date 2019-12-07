@@ -3,7 +3,7 @@
     <div class="px-6 py-4">
       <h3 class="font-bold text-xl mb-2">
         <a :href="post.url" target="_blank" rel="nofollow">
-          <v-clamp autoresize :max-lines="2">{{ post.title }}</v-clamp>
+          <p class="qiitacard-ttl">{{ post.title }}</p>
         </a>
       </h3>
       <p class="text-gray-700 text-base">{{ postBody }}</p>
@@ -25,14 +25,8 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { PostLists } from 'models/QiitaPost'
 
-import VClamp from 'vue-clamp'
-
-@Component({
-  components: {
-    VClamp
-  }
-})
-export default class QiitaList extends Vue {
+@Component({})
+export default class QiitaCard extends Vue {
   @Prop({ required: true })
   post!: PostLists
 
@@ -43,4 +37,13 @@ export default class QiitaList extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.qiitacard {
+  &-ttl {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
+</style>
