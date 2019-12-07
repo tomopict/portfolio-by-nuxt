@@ -6,7 +6,7 @@
         :key="post.id"
         class="w-full sm:w-1/2 md:w-1/3 mb-6 "
       >
-        <QiitaLists :post="post" />
+        <QiitaList :post="post" />
       </li>
     </ul>
     <ul class="flex flex-wrap -mb-4 px-4">
@@ -15,7 +15,7 @@
         :key="post.id"
         class="w-full sm:w-1/2 md:w-1/3 mb-6 "
       >
-        <QiitaLists :post="post" />
+        <QiitaList :post="post" />
       </li>
     </ul>
   </div>
@@ -27,16 +27,16 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { PostLists } from '@/models/QiitaPost'
 import { fetchQiitaUserData } from '@/services/fetchQiitaData'
 
-import QiitaLists from '@/components/Molecules/QiitaLists.vue'
+import QiitaList from '@/components/Molecules/QiitaList.vue'
 
 import { qiitaModule } from '@/store/store'
 
 @Component({
   components: {
-    QiitaLists
+    QiitaList
   }
 })
-export default class QiitaPostLists extends Vue {
+export default class QiitLists extends Vue {
   posts: PostLists[] = []
 
   private mounted(): void {

@@ -32,7 +32,7 @@ import VClamp from 'vue-clamp'
     VClamp
   }
 })
-export default class QiitaLists extends Vue {
+export default class QiitaList extends Vue {
   @Prop({ required: true })
   post!: PostLists
 

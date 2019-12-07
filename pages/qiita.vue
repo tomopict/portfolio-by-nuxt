@@ -1,16 +1,16 @@
 <template>
   <div>
-    <QiitaPostLists />
+    <QiitaLists />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import QiitaPostLists from '@/components/organisms/QiitaPostLists.vue'
+import QiitaLists from '@/components/organisms/QiitaLists.vue'
 
 @Component({
   components: {
-    QiitaPostLists
+    QiitaLists
   }
 })
 export default class Qiita extends Vue {}
