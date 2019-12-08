@@ -8,6 +8,9 @@ Nuxt.js Base portfolio site
 $ yarn install
 
 # serve with hot reload at localhost:4000 and fetch localserver
+
+## start before below commond mockAPI server start at localhost:4001
+$(npm bin)/json-server --watch db.json --routes routes.json -p 4001
 $ yarn serve:dev
 
 # serve with hot reload at localhost:4000 and fetch remoteserver
@@ -20,8 +23,6 @@ $ yarn start:prod
 # generate static project
 $ yarn generate:prod
 
-## mockAPI server start at localhost:4001
-$(npm bin)/json-server --watch db.json --routes routes.json -p 4001
 
 ```
 
