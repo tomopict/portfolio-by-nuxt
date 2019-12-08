@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container top">
     <div>
       <div id="cloud-circle"></div>
       <svg width="0" height="0">
@@ -19,20 +19,24 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { ref, computed, watch, onMounted } from '@vue/composition-api'
+import { ref, reactive, computed, watch, onMounted } from '@vue/composition-api'
 import { fetchWeatherData } from '@/services/fetchWeatherData'
-
 export default Vue.extend({
-  setup() {
+  setup(props: {}, context) {
+    // { root: { $dayjs } }
     // State
     const money = ref(10)
     const delta = ref(1)
+    const state = reactive({
+      Props: props
+      // now: $dayjs().format('MM月DD日 (ddd)')
+    })
 
     // Computed props
     const formattedMoney = computed(() => money.value.toFixed(2))
 
     // Hooks
-    onMounted(() => console.log('Clock Object mounted'))
+    onMounted(() => console.log('mounted'))
 
     // Methods
     const add = () => (money.value += Number(delta.value))
@@ -43,6 +47,7 @@ export default Vue.extend({
     )
 
     return {
+      state,
       delta,
       money,
       formattedMoney,
@@ -78,13 +83,16 @@ export default Vue.extend({
   top: -320px;
   left: -320px;
 }
-.container {
+.top {
+  background-color: #cccccc;
   margin: 0 auto;
+  padding: 0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  max-width: none;
 }
 
 .title {

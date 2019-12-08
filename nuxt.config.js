@@ -31,7 +31,13 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@plugins/globalComponents.js', '@/plugins/composition-api'],
+  plugins: [
+    '@plugins/globalComponents.js',
+    '@/plugins/composition-api',
+    '@/plugins/day.js',
+    '@/plugins/day2.js',
+    '@/plugins/ctx-inject.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
