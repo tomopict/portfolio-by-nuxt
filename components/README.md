@@ -1,7 +1,11 @@
 # COMPONENTS
 
-**This directory is not required, you can delete it if you don't want to use it.**
+## Atmos
+This directory contains the most fundamental elements.
+Components whose names begin with Base are registered as global components.
 
-The components directory contains your Vue.js Components.
+## Molecules
+This directory contains components consisting of multiple atoms elements.
 
-_Nuxt.js doesn't supercharge these components._
+## Organisms
+This directory contains a component that makes sense on its own.

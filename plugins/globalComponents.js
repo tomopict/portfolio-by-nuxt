@@ -3,7 +3,7 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 
 const requireComponent = require.context(
-  '@/components/Atomos/',
+  '@/components/Atmos/',
   false,
   /Base[A-Z]\w+\.(vue|js)$/
 )
