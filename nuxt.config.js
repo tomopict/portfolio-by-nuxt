@@ -34,9 +34,7 @@ module.exports = {
   plugins: [
     '@plugins/globalComponents.js',
     '@/plugins/composition-api',
-    '@/plugins/day.js',
-    '@/plugins/day2.js',
-    '@/plugins/ctx-inject.js'
+    '@/plugins/dayjs/day.js'
   ],
   /*
    ** Nuxt.js dev-modules
