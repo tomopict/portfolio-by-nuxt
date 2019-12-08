@@ -1,5 +1,5 @@
 <template>
-  <section class="container top">
+  <section class="container top" :class="`timeslot-${timeSlot}`">
     <div>
       <div id="cloud-circle"></div>
       <svg width="0" height="0">
@@ -19,40 +19,39 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { ref, reactive, computed, watch, onMounted } from '@vue/composition-api'
+import { reactive, computed, onMounted } from '@vue/composition-api'
 import { fetchWeatherData } from '@/services/fetchWeatherData'
 export default Vue.extend({
   setup(props: {}, context) {
-    // { root: { $dayjs } }
     // State
-    const money = ref(10)
-    const delta = ref(1)
     const state = reactive({
       Props: props
-      // now: $dayjs().format('MM月DD日 (ddd)')
+    })
+    const timeSlot = computed(() => {
+      const time = +context.root.$dayjs().format('HH')
+      switch (true) {
+        case time < 5:
+          return 'night'
+        case time < 8:
+          return 'earlymorinig'
+        case time < 12:
+          return 'morinig'
+        case time < 17:
+          return 'evening'
+        case time < 19:
+          return 'sunset'
+        default:
+          return 'night'
+      }
     })
 
-    // Computed props
-    const formattedMoney = computed(() => money.value.toFixed(2))
-
-    // Hooks
-    onMounted(() => console.log('mounted'))
-
-    // Methods
-    const add = () => (money.value += Number(delta.value))
-
-    // Watchers
-    const moneyWatch = watch(money, (newVal, oldVal) =>
-      console.log('Money changed', newVal, oldVal)
-    )
+    onMounted(() => {
+      console.log('moutend')
+    })
 
     return {
       state,
-      delta,
-      money,
-      formattedMoney,
-      add,
-      moneyWatch
+      timeSlot
     }
   },
   asyncData() {
@@ -72,7 +71,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 #cloud-circle {
   width: 500px;
   height: 275px;
@@ -83,6 +82,26 @@ export default Vue.extend({
   top: -320px;
   left: -320px;
 }
+.timeslot {
+  &-earlymorinig {
+    background-color: #f9c5d1;
+    background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
+  }
+  &-morning,
+  &-evening {
+    background-color: #7aa7f9;
+    background-image: linear-gradient(315deg, #7aa7f9 0%, #577ff1 74%);
+  }
+  &-sunset {
+    background-color: #a40606;
+    background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
+  }
+  &-night {
+    background-color: #2a305a;
+    background-image: linear-gradient(316deg, #2a305a 0%, #141050 74%);
+  }
+}
+
 .top {
   background-color: #cccccc;
   margin: 0 auto;
