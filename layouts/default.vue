@@ -1,8 +1,20 @@
 <template>
   <div>
+    <nav-items />
     <nuxt />
   </div>
 </template>
+<script lang="ts">
+import Vue from 'vue'
+import NavItems from '@/components/Organisms/NavItems.vue'
+
+export default Vue.extend({
+  name: 'Default',
+  components: {
+    NavItems
+  }
+})
+</script>
 
 <style>
 html {
