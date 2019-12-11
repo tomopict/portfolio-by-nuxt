@@ -21,6 +21,7 @@
     "@nuxtjs/tailwindcss": "^1.1.2",
     "@vue/composition-api": "^0.3.2",
     "cross-env": "^6.0.3",
+    "dayjs": "^1.8.17",
     "eslint": "^6.4.0",
     "eslint-loader": "^3.0.0",
     "eslint-plugin-nuxt": "^0.4.3",
