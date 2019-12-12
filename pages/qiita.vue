@@ -1,5 +1,13 @@
 <template>
   <div>
+    <!-- <BaseInput
+      v-model="state.message"
+      label="Description"
+      type="text"
+      placeholder="Description"
+      class="field"
+      @change-message="changeMessage"
+    /> -->
     <QiitaLists />
   </div>
 </template>
