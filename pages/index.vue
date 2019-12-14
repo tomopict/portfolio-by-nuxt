@@ -1,19 +1,7 @@
 <template>
   <section class="container top" :class="`timeslot-${timeSlot}`">
-    <div>
-      <div id="cloud-circle"></div>
-      <svg width="0" height="0">
-        <filter id="filter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency=".01"
-            numOctaves="10"
-          />
-          <feDisplacementMap in="SourceGraphic" scale="180" />
-        </filter>
-      </svg>
-    </div>
-    <BaseIcon />
+    <top-view />
+    <cloud />
   </section>
 </template>
 
@@ -21,11 +9,26 @@
 import Vue from 'vue'
 import { reactive, computed, onMounted } from '@vue/composition-api'
 import { fetchWeatherData } from '@/services/fetchWeatherData'
+import usePromise from '@/composables/use-promise.ts'
+import TopView from '@/components/Organisms/TopView.vue'
+import Cloud from '@/components/Molecules/Cloud.vue'
+
+interface weatherParamModels {
+  p: string
+  APPID: string
+}
+
 export default Vue.extend({
+  name: 'YourComponent',
+  components: {
+    TopView,
+    Cloud
+  },
   setup(props: {}, context) {
     // State
     const state = reactive({
-      Props: props
+      Props: props,
+      message: ''
     })
     const timeSlot = computed(() => {
       const time = +context.root.$dayjs().format('HH')
@@ -33,7 +36,7 @@ export default Vue.extend({
         case time < 5:
           return 'night'
         case time < 8:
-          return 'earlymorinig'
+          return 'earlymorning'
         case time < 12:
           return 'morinig'
         case time < 17:
@@ -46,44 +49,45 @@ export default Vue.extend({
     })
 
     onMounted(() => {
-      console.log('moutend')
+      console.log('mounted')
     })
+
+    const changeMessage = (message: string) => {
+      state.message = message
+    }
 
     return {
       state,
-      timeSlot
+      timeSlot,
+      changeMessage
     }
   },
   asyncData() {
-    return fetchWeatherData({
+    const weatherParam = reactive({
       q: 'tokyo',
       APPID: `${process.env.WEATHER}`
     })
-      .then(res => {
-        return {
-          weatherData: res.data
-        }
-      })
-      .catch(e => {
-        console.log(e)
-      })
+    const getEvents = usePromise(weatherParam => fetchWeatherData(weatherParam))
+    getEvents.createPromise(weatherParam)
+    // return fetchWeatherData({
+    //   q: 'tokyo',
+    //   APPID: `${process.env.WEATHER}`
+    // })
+    //   .then(res => {
+    //     return {
+    //       weatherData: res.data
+    //     }
+    //   })
+    //   .catch(e => {
+    //     console.log(e)
+    //   })
   }
 })
 </script>
 
 <style lang="scss" scoped>
-#cloud-circle {
-  width: 500px;
-  height: 275px;
-  border-radius: 50%;
-  filter: url(#filter);
-  box-shadow: 400px 400px 60px 0px #fff;
-  position: absolute;
-  top: -320px;
-  left: -320px;
-}
 .timeslot {
-  &-earlymorinig {
+  &-earlymorning {
     background-color: #f9c5d1;
     background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
   }
