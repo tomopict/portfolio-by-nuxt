@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:max-w-md rounded overflow-hidden shadow-lg">
+  <div class="sm:max-w-md rounded overflow-hidden shadow-lg bg-white">
     <div class="px-6 py-4">
       <h3 class="font-bold text-xl mb-2">
         <a :href="post.url" target="_blank" rel="nofollow">
