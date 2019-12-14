@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="flex flex-wrap -mb-4 px-4">
+    <ul class="flex flex-wrap -mb-4 px-4 bg-white">
       <li
         v-for="post in qiitaLists"
         :key="post.id"

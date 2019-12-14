@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class=" bg-gray-400 w-screen h-full lg:p-20">
     <nav-items />
     <nuxt />
   </div>
@@ -17,6 +17,14 @@ export default Vue.extend({
 </script>
 
 <style>
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
