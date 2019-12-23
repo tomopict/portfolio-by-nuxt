@@ -1,5 +1,7 @@
 <template>
-  <div class="navitem fixed top-0 right-0">
+  <div
+    class="navitem fixed sm:top-0 right-0 bottom-0 bg-gray-100 sm:bg-transparent"
+  >
     <nav>
       <ul class="navitem_lists flex">
         <li class="navitem_list relative">
@@ -34,10 +36,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { reactive } from '@vue/composition-api'
+import { reactive, createComponent } from '@vue/composition-api'
 
-export default Vue.extend({
+export default createComponent({
   name: 'NavItem',
   setup() {
     const state = reactive({
@@ -50,7 +51,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .navitem {
   &_list {
-    color: #fff;
     overflow: hidden;
     width: 100px;
     position: relative;
