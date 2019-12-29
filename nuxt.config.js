@@ -2,7 +2,7 @@ require('dotenv').config()
 const environment = process.env.NODE_ENV
 const envSet = require(`./env.${environment}.js`)
 
-module.exports = {
+export default {
   mode: 'universal',
   /*
    ** Headers of the page
