@@ -1,13 +1,13 @@
 <template>
   <div
-    class="flex flex-col h-full rounded overflow-hidden shadow-lg bg-white ml-2 qiitacard"
+    class="flex flex-col h-full rounded overflow-hidden shadow-lg bg-white qiitacard text-left"
   >
     <a :href="post.url" target="_blank" rel="nofollow">
       <div class="px-6 py-4">
         <h3 class="font-bold text-xl mb-2">
           <p class="qiitacard-ttl">{{ post.title }}</p>
         </h3>
-        <p class="text-gray-700 text-base text-left">{{ state.postBody }}</p>
+        <p class="text-gray-700 text-base">{{ state.postBody }}</p>
       </div>
     </a>
     <div class="px-6 py-4 flex flex-wrap">
