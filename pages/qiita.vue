@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import QiitaLists from '@/components/organisms/QiitaLists.vue'
+import QiitaLists from '@/components/Organisms/QiitaLists.vue'
 
 @Component({
   components: {
