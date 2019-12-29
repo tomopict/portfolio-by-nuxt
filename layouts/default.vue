@@ -1,11 +1,11 @@
 <template>
-  <div class="w-screen lg:p-20 text-gray-700">
+  <div class="w-screen text-gray-700">
     <nuxt />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { reactive, computed, SetupContext } from '@vue/composition-api'
+import { reactive } from '@vue/composition-api'
 
 import { fetchWeatherData } from '@/services/fetchWeatherData'
 import usePromise from '@/composables/use-promise.ts'
