@@ -1,6 +1,6 @@
 <template>
   <div class="icon-wrapper">
-    <fa-icon :icon="name" :size="size" v-bind="$attrs" />
+    <fa-icon :icon="[icotype, name]" :size="size" v-bind="$attrs" />
   </div>
 </template>
 
@@ -11,6 +11,10 @@ export default createComponent({
   name: 'BaseIcon',
   props: {
     name: {
+      type: String,
+      required: true
+    },
+    icotype: {
       type: String,
       required: true
     },
