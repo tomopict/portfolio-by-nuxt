@@ -1,0 +1,31 @@
+@import './variables';
+
+@mixin mq {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin mq-min {
+  @media only screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin mq-md {
+  @media screen and (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media screen and (max-width: 475px) {
+    @content;
+  }
+}
+
+@mixin se {
+  @media screen and (max-width: 320px) {
+    @content;
+  }
+}
