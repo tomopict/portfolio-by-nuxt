@@ -1,7 +1,7 @@
 <template>
-  <section class="bg-gray-200">
+  <section>
     <top-view />
-    <section class="p-4 pt-10 mb-32">
+    <section class="p-4 pt-10 lg:mb-32 mb-10">
       <h2 class="font-bold text-center mb-6 m-auto text-2xl">About</h2>
       <About :class="'lg:w-3/4'" />
     </section>
@@ -27,7 +27,7 @@ interface weatherParamModels {
 }
 
 export default Vue.extend({
-  name: 'YourComponent',
+  name: 'Index',
   components: {
     TopView,
     QiitaLists,
