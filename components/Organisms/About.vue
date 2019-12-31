@@ -4,7 +4,7 @@
       <img src="~/assets/img/avatar.png" alt="" class="about_img m-auto mb-2" />
       <p>Author: Tomoki Nakama</p>
     </section>
-    <section class="skills lg:w-1/2 mt-6 m-auto">
+    <section class="skills mt-6 m-auto">
       <section class="mb-8">
         <h3 class=" font-semibold mb-3">Language</h3>
         <ul class="lg:flex lg:flex-wrap">
@@ -12,7 +12,10 @@
             <h4>{{ s.label }}</h4>
             <div class="about-star flex">
               <span v-for="n in s.star" :key="n">
-                <base-icon :name="'star'" :style="{ color: 'orange' }"
+                <base-icon
+                  :icotype="'fas'"
+                  :name="'star'"
+                  :style="{ color: 'orange' }"
               /></span>
             </div>
             <p class=" text-sm lg:w-11/12">
@@ -29,7 +32,10 @@
             <h4>{{ s.label }}</h4>
             <div class="about-star flex">
               <span v-for="n in s.star" :key="n">
-                <base-icon :name="'star'" :style="{ color: 'orange' }"
+                <base-icon
+                  :icotype="'fas'"
+                  :name="'star'"
+                  :style="{ color: 'orange' }"
               /></span>
             </div>
             <p class=" text-sm lg:w-11/12">
