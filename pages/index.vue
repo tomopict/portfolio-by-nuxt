@@ -1,17 +1,25 @@
 <template>
-  <section class="container top" :class="`timeslot-${timeSlot}`">
+  <section class="bg-gray-200">
     <top-view />
-    <cloud />
+    <section class="p-4 pt-10 mb-32">
+      <h2 class="font-bold text-center mb-6 m-auto text-2xl">About</h2>
+      <About :class="'lg:w-3/4'" />
+    </section>
+    <section class=" p-2 lg:w-3/4 m-auto">
+      <h2 class="font-bold text-center mb-6 m-auto text-2xl">Qiita</h2>
+      <qiita-lists :limit="3" />
+      <BaseLink :link="'qiita'">Read More</BaseLink>
+    </section>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { reactive, computed, onMounted } from '@vue/composition-api'
-import { fetchWeatherData } from '@/services/fetchWeatherData'
-import usePromise from '@/composables/use-promise.ts'
+import { reactive } from '@vue/composition-api'
 import TopView from '@/components/Organisms/TopView.vue'
-import Cloud from '@/components/Molecules/Cloud.vue'
+import About from '@/components/Organisms/About.vue'
+
+import QiitaLists from '@/components/Organisms/QiitaLists.vue'
 
 interface weatherParamModels {
   p: string
@@ -22,34 +30,13 @@ export default Vue.extend({
   name: 'YourComponent',
   components: {
     TopView,
-    Cloud
+    QiitaLists,
+    About
   },
-  setup(props: {}, context) {
-    // State
+  setup(props: {}) {
     const state = reactive({
       Props: props,
       message: ''
-    })
-    const timeSlot = computed(() => {
-      const time = +context.root.$dayjs().format('HH')
-      switch (true) {
-        case time < 5:
-          return 'night'
-        case time < 8:
-          return 'earlymorning'
-        case time < 12:
-          return 'morinig'
-        case time < 17:
-          return 'evening'
-        case time < 19:
-          return 'sunset'
-        default:
-          return 'night'
-      }
-    })
-
-    onMounted(() => {
-      console.log('mounted')
     })
 
     const changeMessage = (message: string) => {
@@ -58,58 +45,35 @@ export default Vue.extend({
 
     return {
       state,
-      timeSlot,
       changeMessage
     }
   },
-  asyncData() {
-    const weatherParam = reactive({
-      q: 'tokyo',
-      APPID: `${process.env.WEATHER}`
-    })
-    const getEvents = usePromise(weatherParam => fetchWeatherData(weatherParam))
-    getEvents.createPromise(weatherParam)
-    // return fetchWeatherData({
-    //   q: 'tokyo',
-    //   APPID: `${process.env.WEATHER}`
-    // })
-    //   .then(res => {
-    //     return {
-    //       weatherData: res.data
-    //     }
-    //   })
-    //   .catch(e => {
-    //     console.log(e)
-    //   })
-  }
+  async asyncData() {}
+  // asyncData() {
+  //   return axios
+  //     .get(`http://zipcloud.ibsnet.co.jp/api/search?zipcode=7830060`)
+  //     .then(res => {
+  //       return { answer: res.data.status }
+  //     })
+  // return fetchWeatherData({
+  //   q: 'tokyo',
+  //   APPID: `${process.env.WEATHER}`
+  // })
+  //   .then(res => {
+  //     return {
+  //       weatherData: res.data
+  //     }
+  //   })
+  //   .catch(e => {
+  //     console.log(e)
+  //   })
+  // }
 })
 </script>
 
 <style lang="scss" scoped>
-.timeslot {
-  &-earlymorning {
-    background-color: #f9c5d1;
-    background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
-  }
-  &-morning,
-  &-evening {
-    background-color: #7aa7f9;
-    background-image: linear-gradient(315deg, #7aa7f9 0%, #577ff1 74%);
-  }
-  &-sunset {
-    background-color: #a40606;
-    background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
-  }
-  &-night {
-    background-color: #2a305a;
-    background-image: linear-gradient(316deg, #2a305a 0%, #141050 74%);
-  }
-}
-
 .top {
-  background-color: #cccccc;
   margin: 0 auto;
-  padding: 0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -118,6 +82,10 @@ export default Vue.extend({
   max-width: none;
 }
 
+h2 {
+  border-bottom: 1px solid #4a5568;
+  max-width: 200px;
+}
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

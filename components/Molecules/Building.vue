@@ -15,9 +15,6 @@ import { createComponent } from '@vue/composition-api'
 export default createComponent({
   name: 'Building',
   props: {
-    timeslot: {
-      type: String
-    },
     buildingClass: {
       type: String
     },
@@ -48,9 +45,44 @@ export default createComponent({
 }
 .building {
   z-index: 3;
+  &-inner {
+    bottom: 0;
+    background: #33353c;
+    padding: 10px 6px 6px 6px;
+    overflow: hidden;
+    position: relative;
+    @include mq {
+      width: 70px;
+    }
+    &.led {
+      li {
+        &.overtime {
+          background: rgba(255, 249, 59, 0.9);
+          box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.2);
+          &:before {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.7);
+            position: absolute;
+            top: 0;
+            left: calc(50% - (3px / 2));
+          }
+        }
+      }
+    }
+  }
   &.w-mini {
     li {
       height: 5px;
+    }
+  }
+  &.w-high {
+    li {
+      height: 12px;
+      width: 8px;
     }
   }
   &.perspective {
@@ -125,31 +157,66 @@ export default createComponent({
     transform: translate(-10px, 0) scale(1.1);
     z-index: 3;
   }
-  &-inner {
-    bottom: 0;
-    background: #33353c;
-    padding: 10px 6px 6px 6px;
-    overflow: hidden;
-    position: relative;
-    @include mq {
-      width: 70px;
+  &.earlymorning {
+    .roof {
+      background: #f1d8b1;
+      &:before,
+      &:after {
+        display: none;
+      }
     }
-    &.led {
+    .building-inner {
+      background: #f1d8b1;
       li {
         &.overtime {
-          background: rgba(255, 249, 59, 0.9);
-          box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.2);
+          background: #fff;
+        }
+      }
+    }
+  }
+  &.morning,
+  &.evening {
+    .roof {
+      background: #d4cfc6;
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+    .building-inner {
+      background: #d4cfc6;
+      li {
+        &.overtime {
           &:before {
-            content: '';
-            display: block;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.7);
-            position: absolute;
-            top: 0;
-            left: calc(50% - (3px / 2));
+            display: none;
           }
+          background: #868181;
+        }
+      }
+    }
+  }
+  &.evening {
+    .roof {
+      background: #949390;
+    }
+    .building-inner {
+      background: #949390;
+      li {
+        &.overtime {
+          background: #e2e8d6;
+        }
+      }
+    }
+  }
+  &.sunset {
+    .roof {
+      background: #d49f66;
+    }
+    .building-inner {
+      background: #d49f66;
+      li {
+        &.overtime {
+          background: #e2e8d6;
         }
       }
     }
