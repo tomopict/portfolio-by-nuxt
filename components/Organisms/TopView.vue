@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex h-screen flex-col justify-center items-center p-10 text-white"
+    class="w-full flex h-screen flex-col justify-center items-center p-10 text-white topview"
     :class="`timeslot-${timeSlot}`"
   >
     <img
@@ -8,17 +8,19 @@
       alt=""
       class="topview-avatar lg:w-40 lg:h-40 w-24 h-24 rounded-full"
     />
-    <h2 class="lg:text-4xl text-3xl">Welcome!</h2>
-    <p class="lg:text-2xl text-2xl topview-catch text-center">
+    <strong class="lg:text-4xl text-2xl topview-welcome target"
+      >Welcome!</strong
+    >
+    <h1 class="lg:text-2xl text-2xl topview-catch text-center">
       This is Portfolio Site<br />
       by tomopict
-    </p>
+    </h1>
     <div class="flex mt-2">
       <a href="https://twitter.com/tomopict" target="_blank" class="mr-2">
         <base-icon
           :icotype="'fab'"
           :name="'twitter'"
-          :size="'2x'"
+          :size="'lg'"
           :style="{ color: 'white' }"
         />
       </a>
@@ -26,7 +28,7 @@
         <base-icon
           :icotype="'fab'"
           :name="'github'"
-          :size="'2x'"
+          :size="'lg'"
           :style="{ color: 'white' }"
         />
       </a>
@@ -64,15 +66,15 @@
 import Vue from 'vue'
 import { computed } from '@vue/composition-api'
 import Building from '@/components/Molecules/Building.vue'
-import Cloud from '@/components/Molecules/Cloud.vue'
 export default Vue.extend({
   name: 'TopView',
   components: {
-    Building,
-    Cloud
+    Building
   },
   setup(props, context) {
     const timeSlot = computed(() => {
+      const timeDifference = 9
+
       const time = +context.root.$dayjs().format('HH')
       switch (true) {
         case time < 5:
@@ -96,17 +98,36 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import './assets/scss/_media-screen';
-.topview- {
-  &catch {
+.topview {
+  &-catch {
     font-weight: 100;
     line-height: 1.2;
   }
-  &avatar {
+  &-avatar {
     margin-top: -40px;
   }
 }
+
+.timeslot-earlymorning {
+  background: #f9c5d1;
+  background-image: linear-gradient(315deg, #ffdfe6 0%, #b8b7fa 74%);
+}
+.timeslot-morning,
+.timeslot-evening {
+  background-color: #7aa7f9;
+  background-image: linear-gradient(315deg, #7aa7f9 0%, #577ff1 74%);
+}
+.timeslot-sunset {
+  background-color: #a40606;
+  background-image: linear-gradient(315deg, #d98324 0%, #435ca9 74%);
+}
+.timeslot-night {
+  background-color: #2a305a;
+  background-image: linear-gradient(316deg, #2a305a 0%, #141050 74%);
+}
+
 .building-wrap {
   display: flex;
   align-items: flex-end;
@@ -133,25 +154,6 @@ export default Vue.extend({
       border-bottom: 10vw solid #000;
       border-left: 100vw solid transparent;
     }
-  }
-}
-.timeslot {
-  &-earlymorning {
-    background-color: #f9c5d1;
-    background-image: linear-gradient(315deg, #ffdfe6 0%, #b8b7fa 74%);
-  }
-  &-morning,
-  &-evening {
-    background-color: #7aa7f9;
-    background-image: linear-gradient(315deg, #7aa7f9 0%, #577ff1 74%);
-  }
-  &-sunset {
-    background-color: #a40606;
-    background-image: linear-gradient(315deg, #d98324 0%, #a40606 74%);
-  }
-  &-night {
-    background-color: #2a305a;
-    background-image: linear-gradient(316deg, #2a305a 0%, #141050 74%);
   }
 }
 </style>
