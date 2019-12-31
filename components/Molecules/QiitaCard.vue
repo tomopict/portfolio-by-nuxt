@@ -1,13 +1,15 @@
 <template>
-  <div class="sm:max-w-md rounded overflow-hidden shadow-lg bg-white">
-    <div class="px-6 py-4">
-      <h3 class="font-bold text-xl mb-2">
-        <a :href="post.url" target="_blank" rel="nofollow">
+  <div
+    class="flex flex-col h-full rounded overflow-hidden bg-white qiitacard text-left lg:ml-2"
+  >
+    <a :href="post.url" target="_blank" rel="nofollow">
+      <div class="px-6 py-4">
+        <h3 class="font-bold text-xl mb-2">
           <p class="qiitacard-ttl">{{ post.title }}</p>
-        </a>
-      </h3>
-      <p class="text-gray-700 text-base">{{ postBody }}</p>
-    </div>
+        </h3>
+        <p class="text-gray-500 text-sm">{{ state.postBody }}</p>
+      </div>
+    </a>
     <div class="px-6 py-4 flex flex-wrap">
       <BaseTag
         v-for="tag in post.tags"
@@ -22,23 +24,31 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { PostLists } from 'models/QiitaPost'
+import { createComponent, computed, reactive } from '@vue/composition-api'
+import { PostLists } from '@/models/QiitaPost'
 
-@Component({})
-export default class QiitaCard extends Vue {
-  @Prop({ required: true })
-  post!: PostLists
-
-  get postBody() {
-    const body = this.post.body
-    const bodySlice = body.substr(0, 50)
-    return bodySlice
+export default createComponent({
+  name: 'QiitaCard',
+  props: {
+    post: {
+      type: Object as () => PostLists,
+      required: true
+    }
+  },
+  setup({ post }) {
+    const state = reactive({
+      postBody: computed(() => post.body.substr(0, 50))
+    })
+    return { state }
   }
-}
+})
 </script>
 <style lang="scss" scoped>
 .qiitacard {
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
   &-ttl {
     display: -webkit-box;
     -webkit-box-orient: vertical;

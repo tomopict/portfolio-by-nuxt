@@ -1,22 +1,38 @@
 <template>
-  <div class=" bg-gray-400 w-screen h-full lg:p-20">
-    <nav-items />
+  <div class="w-screen text-gray-700 bg-gray-200">
     <nuxt />
+    <Footer />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import NavItems from '@/components/Organisms/NavItems.vue'
+import { reactive } from '@vue/composition-api'
+
+import { fetchWeatherData } from '@/services/fetchWeatherData'
+import usePromise from '@/composables/use-promise.ts'
+import Footer from '@/components/Organisms/TheFooter.vue'
+interface weatherParamModels {
+  p: string
+  APPID: string
+}
 
 export default Vue.extend({
   name: 'Default',
   components: {
-    NavItems
+    Footer
+  },
+  asyncData() {
+    const weatherParam = reactive({
+      q: 'tokyo',
+      APPID: `${process.env.WEATHER}`
+    })
+    const getEvents = usePromise(weatherParam => fetchWeatherData(weatherParam))
+    getEvents.createPromise(weatherParam)
   }
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.3s;

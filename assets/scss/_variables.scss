@@ -1,0 +1,39 @@
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #f29600 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$font-family-base: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体',
+  'Yu Gothic Medium', YuGothic, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN',
+  'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+
+$breakpoint: 768px;
+$breakpoint-md: 960px;
+$min-height: calc(100vh - 200px);
+
+$category-color: #623925;
+$category-border: 0.75px solid #c8c3bf;
+$category-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+$category-shadow-hover: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+$btn-color-next1: #eb3e30;
+$btn-color-next2: #ea5f54;
+$btn-border-color-next: #ed1f26;
+$btn-color-default: #e8e8e8;
+$btn-border-color-default: #c4c4c4;
+$btn-border-color-add: #efd384;
+$btn-color-add1: #ceb256;
+$btn-color-add2: #f1d98a;
+
+$error-background: #fff0f1;
+$error-border: 1px solid #fe0000;
+
+$radio-color1: #f4f4f4;
+$radio-color2: #6e6e6e;

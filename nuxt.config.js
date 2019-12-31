@@ -2,7 +2,7 @@ require('dotenv').config()
 const environment = process.env.NODE_ENV
 const envSet = require(`./env.${environment}.js`)
 
-module.exports = {
+export default {
   mode: 'universal',
   /*
    ** Headers of the page
@@ -27,14 +27,15 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
     '@plugins/globalComponents.js',
     '@/plugins/composition-api',
-    '@/plugins/dayjs/day.js'
+    '@/plugins/dayjs/day.js',
+    { src: '@/plugins/font-awesome', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
