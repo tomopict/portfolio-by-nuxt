@@ -2,6 +2,8 @@ version: '3'
 
 services:
   nuxt:
+    environment:
+      TZ: Asia/Tokyo
     container_name: portfolio
     # Dockerfileの場所
     build: ./
