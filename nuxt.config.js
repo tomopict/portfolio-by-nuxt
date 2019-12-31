@@ -35,7 +35,8 @@ export default {
     '@plugins/globalComponents.js',
     '@/plugins/composition-api',
     '@/plugins/dayjs/day.js',
-    { src: '@/plugins/font-awesome', ssr: false }
+    '@/plugins/font-awesome',
+    { src: '@/plugins/intersection-observer', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
