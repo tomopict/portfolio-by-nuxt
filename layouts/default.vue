@@ -9,18 +9,19 @@ import Vue from 'vue'
 import { reactive } from '@vue/composition-api'
 
 import { fetchWeatherData } from '@/services/fetchWeatherData'
-import usePromise from '@/composables/use-promise.ts'
 import Footer from '@/components/Organisms/TheFooter.vue'
+import usePromise from '@/composables/use-promise.ts'
+
 interface weatherParamModels {
   p: string
   APPID: string
 }
-
 export default Vue.extend({
   name: 'Default',
   components: {
     Footer
   },
+  setup() {},
   asyncData() {
     const weatherParam = reactive({
       q: 'tokyo',
@@ -32,13 +33,22 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.3s;
 }
 .page-enter,
 .page-leave-active {
+  opacity: 0;
+}
+.enter {
+  transition: all 2s;
+  transform: translateY(0);
+  opacity: 1;
+}
+.lazy {
+  transform: translateY(100px);
   opacity: 0;
 }
 html {
