@@ -6,18 +6,19 @@
     <img
       src="~/assets/img/avatar.png"
       alt=""
-      class="topview-avatar w-20 h-20 rounded-full"
+      class="topview-avatar lg:w-40 lg:h-40 w-24 h-24 rounded-full"
     />
-    <h2 class="text-2xl">Welcome!</h2>
-    <p class="text-lg topview-catch text-center">
+    <h2 class="lg:text-4xl text-3xl">Welcome!</h2>
+    <p class="lg:text-2xl text-2xl topview-catch text-center">
       This is Portfolio Site<br />
       by tomopict
     </p>
-    <div class="flex">
+    <div class="flex mt-2">
       <a href="https://twitter.com/tomopict" target="_blank" class="mr-2">
         <base-icon
           :icotype="'fab'"
           :name="'twitter'"
+          :size="'2x'"
           :style="{ color: 'white' }"
         />
       </a>
@@ -25,6 +26,7 @@
         <base-icon
           :icotype="'fab'"
           :name="'github'"
+          :size="'2x'"
           :style="{ color: 'white' }"
         />
       </a>
@@ -78,7 +80,7 @@ export default Vue.extend({
         case time < 8:
           return 'earlymorning'
         case time < 12:
-          return 'sunset'
+          return 'morning'
         case time < 17:
           return 'evening'
         case time < 19:
