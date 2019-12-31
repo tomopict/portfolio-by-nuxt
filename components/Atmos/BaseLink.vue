@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <nuxt-link class="text-white" :to="link">
+  <div class="text-right">
+    <nuxt-link :to="link">
       <slot></slot>
     </nuxt-link>
   </div>
@@ -22,5 +22,6 @@ export default {
 <style lang="scss" scoped>
 a {
   text-decoration: underline;
+  color: #1a0dab;
 }
 </style>
