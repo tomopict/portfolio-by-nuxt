@@ -1,6 +1,7 @@
 <template>
-  <div class="w-screen text-gray-700">
+  <div class="w-screen text-gray-700 bg-gray-200">
     <nuxt />
+    <Footer />
   </div>
 </template>
 <script lang="ts">
@@ -9,7 +10,7 @@ import { reactive } from '@vue/composition-api'
 
 import { fetchWeatherData } from '@/services/fetchWeatherData'
 import usePromise from '@/composables/use-promise.ts'
-
+import Footer from '@/components/Organisms/TheFooter.vue'
 interface weatherParamModels {
   p: string
   APPID: string
@@ -17,6 +18,9 @@ interface weatherParamModels {
 
 export default Vue.extend({
   name: 'Default',
+  components: {
+    Footer
+  },
   asyncData() {
     const weatherParam = reactive({
       q: 'tokyo',
