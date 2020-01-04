@@ -66,6 +66,57 @@
 import Vue from 'vue'
 import { computed } from '@vue/composition-api'
 import Building from '@/components/Molecules/Building.vue'
+
+class TimeSlot {
+  constructor(timeslotObject: Number) {
+    Object.assign(this, timeslotObject)
+  }
+  get timeslot() {
+    return 'night'
+  }
+}
+class TimeSlotNight extends TimeSlot {
+  get timeslot() {
+    return `night`
+  }
+}
+class TimeSlotEarlyMorning extends TimeSlot {
+  get timeslot() {
+    return `earlymorning`
+  }
+}
+class TimeSlotMorning extends TimeSlot {
+  get timeslot() {
+    return `morning`
+  }
+}
+class TimeSlotEvening extends TimeSlot {
+  get timeslot() {
+    return `evening`
+  }
+}
+class TimeSlotSunset extends TimeSlot {
+  get timeslot() {
+    return `sunset`
+  }
+}
+function createTimeSlot(time: Number) {
+  switch (true) {
+    case time < 5:
+      return new TimeSlotNight(time).timeslot
+    case time < 8:
+      return new TimeSlotEarlyMorning(time).timeslot
+    case time < 12:
+      return new TimeSlotMorning(time).timeslot
+    case time < 17:
+      return new TimeSlotEvening(time).timeslot
+    case time < 19:
+      return new TimeSlotSunset(time).timeslot
+    default:
+      return new TimeSlotNight(time).timeslot
+  }
+}
+
 export default Vue.extend({
   name: 'TopView',
   components: {
@@ -73,23 +124,8 @@ export default Vue.extend({
   },
   setup(props, context) {
     const timeSlot = computed(() => {
-      const timeDifference = 9
-
       const time = +context.root.$dayjs().format('HH')
-      switch (true) {
-        case time < 5:
-          return 'night'
-        case time < 8:
-          return 'earlymorning'
-        case time < 12:
-          return 'morning'
-        case time < 17:
-          return 'evening'
-        case time < 19:
-          return 'sunset'
-        default:
-          return 'night'
-      }
+      return createTimeSlot(time)
     })
     return {
       timeSlot
