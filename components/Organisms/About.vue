@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { reactive, createComponent } from '@vue/composition-api'
-import { AUTHOR_SKILL, AUTHOR_FW } from '~/constants/skill'
+import { AUTHOR_SKILL, AUTHOR_FW } from '~/constants/authordata'
 import SkillLists from '@/components/Molecules/SkillLists.vue'
 
 export default createComponent({
