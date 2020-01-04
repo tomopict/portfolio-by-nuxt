@@ -2,49 +2,13 @@
   <div class="about m-auto">
     <section class="text-center text-lg mb-10">
       <img src="~/assets/img/avatar.png" alt="" class="about_img m-auto mb-2" />
-      <p>Author: Tomoki Nakama</p>
+      <p>Author: Tomo</p>
     </section>
     <section class="skills mt-6 m-auto">
-      <section class="mb-8">
-        <h3 class=" font-semibold mb-3">Language</h3>
-        <ul class="lg:flex lg:flex-wrap">
-          <li v-for="s in state.skills" :key="s.label" class="mb-3 lg:w-1/2">
-            <h4>{{ s.label }}</h4>
-            <div class="about-star flex">
-              <span v-for="n in s.star" :key="n">
-                <base-icon
-                  :icotype="'fas'"
-                  :name="'star'"
-                  :style="{ color: 'orange' }"
-              /></span>
-            </div>
-            <p class=" text-sm lg:w-11/12">
-              {{ s.term }}<br />
-              {{ s.text }}
-            </p>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h3 class=" font-semibold mb-3">FrameWork</h3>
-        <ul class="lg:flex lg:flex-wrap">
-          <li v-for="s in state.fw" :key="s.label" class="mb-3 lg:w-1/2">
-            <h4>{{ s.label }}</h4>
-            <div class="about-star flex">
-              <span v-for="n in s.star" :key="n">
-                <base-icon
-                  :icotype="'fas'"
-                  :name="'star'"
-                  :style="{ color: 'orange' }"
-              /></span>
-            </div>
-            <p class=" text-sm lg:w-11/12">
-              {{ s.term }}<br />
-              {{ s.text }}
-            </p>
-          </li>
-        </ul>
-      </section>
+      <SkillLists :skill-lists="state.skills" :class="'mb-8'"
+        >Language</SkillLists
+      >
+      <SkillLists :skill-lists="state.fw" :class="'mb-8'">FrameWork</SkillLists>
     </section>
   </div>
 </template>
@@ -52,9 +16,13 @@
 <script lang="ts">
 import { reactive, createComponent } from '@vue/composition-api'
 import { AUTHOR_SKILL, AUTHOR_FW } from '~/constants/skill'
+import SkillLists from '@/components/Molecules/SkillLists.vue'
 
 export default createComponent({
   name: 'About',
+  components: {
+    SkillLists
+  },
   setup() {
     const state = reactive({
       skills: AUTHOR_SKILL,
