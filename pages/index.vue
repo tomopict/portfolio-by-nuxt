@@ -15,7 +15,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { reactive } from '@vue/composition-api'
 import TopView from '@/components/Organisms/TopView.vue'
 import About from '@/components/Organisms/About.vue'
 
@@ -32,23 +31,7 @@ export default Vue.extend({
     TopView,
     QiitaLists,
     About
-  },
-  setup(props: {}) {
-    const state = reactive({
-      Props: props,
-      message: ''
-    })
-
-    const changeMessage = (message: string) => {
-      state.message = message
-    }
-
-    return {
-      state,
-      changeMessage
-    }
-  },
-  async asyncData() {}
+  }
   // asyncData() {
   //   return axios
   //     .get(`http://zipcloud.ibsnet.co.jp/api/search?zipcode=7830060`)

@@ -15,83 +15,88 @@
       This is Portfolio Site<br />
       by tomopict
     </h1>
-    <div class="flex mt-2">
-      <a href="https://twitter.com/tomopict" target="_blank" class="mr-2">
-        <base-icon
-          :icotype="'fab'"
-          :name="'twitter'"
-          :size="'lg'"
-          :style="{ color: 'white' }"
-        />
-      </a>
-      <a href="https://github.com/tomopict/" target="_blank">
-        <base-icon
-          :icotype="'fab'"
-          :name="'github'"
-          :size="'lg'"
-          :style="{ color: 'white' }"
-        />
-      </a>
-    </div>
-    <div class="building-wrap pt-2" :class="`${timeSlot}`">
-      <Building :building-class="`h-28 ${timeSlot}`" :window-num="8" />
-      <Building :building-class="`h-20 w-mini ${timeSlot}`" />
-      <Building :building-class="`h-30 behind ${timeSlot}`" />
-      <Building :building-class="`h-22 ml-22 ${timeSlot}`" />
-      <Building :building-class="`no-gap h-56 ml-2 ${timeSlot} ${timeSlot}`" />
-      <Building :building-class="`h-30 behind ${timeSlot}`" />
-      <Building :building-class="`h-22 ml-22 ${timeSlot}`" />
-      <Building :building-class="`h-12 ml-10 ${timeSlot}`" />
-      <Building :building-class="`h-22 ml-22 w-high ${timeSlot}`" />
-      <Building
-        :building-class="`h-64 ml-22 w-mini w-16 ${timeSlot}`"
-        :building-height="20"
-        :window-amount="5"
-      />
-      <Building
-        :building-class="`h-20 ml-22 forward w-10 ${timeSlot}`"
-        :building-height="5"
-        :window-amount="3"
-      />
-      <Building :building-class="`h-40 ml-20 behind ${timeSlot}`" />
-      <Building
-        :building-class="`h-64 ml-3 behind ${timeSlot}`"
-        :building-height="20"
-      />
-    </div>
+    <ul class="flex mt-2 authorLinks">
+      <li v-for="sns in snsLinks" :key="sns.value" class="authorLink">
+        <author-link :linkdata="sns" />
+      </li>
+    </ul>
+    <Buildings :timeslot="`${timeSlot}`" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { computed } from '@vue/composition-api'
-import Building from '@/components/Molecules/Building.vue'
+import { computed, reactive, toRefs } from '@vue/composition-api'
+import AuthorLink from '@/components/Molecules/AuthorLink.vue'
+import Buildings from '@/components/Organisms/Buildings.vue'
+import { AUTHOR_SNS } from '~/constants/authordata'
+
+class TimeSlot {
+  constructor(timeslotObject: Number) {
+    Object.assign(this, timeslotObject)
+  }
+  get timeslot() {
+    return 'night'
+  }
+}
+class TimeSlotNight extends TimeSlot {
+  get timeslot() {
+    return `night`
+  }
+}
+class TimeSlotEarlyMorning extends TimeSlot {
+  get timeslot() {
+    return `earlymorning`
+  }
+}
+class TimeSlotMorning extends TimeSlot {
+  get timeslot() {
+    return `morning`
+  }
+}
+class TimeSlotEvening extends TimeSlot {
+  get timeslot() {
+    return `evening`
+  }
+}
+class TimeSlotSunset extends TimeSlot {
+  get timeslot() {
+    return `sunset`
+  }
+}
+function createTimeSlot(time: Number) {
+  switch (true) {
+    case time < 5:
+      return new TimeSlotNight(time).timeslot
+    case time < 8:
+      return new TimeSlotEarlyMorning(time).timeslot
+    case time < 12:
+      return new TimeSlotMorning(time).timeslot
+    case time < 17:
+      return new TimeSlotEvening(time).timeslot
+    case time < 19:
+      return new TimeSlotSunset(time).timeslot
+    default:
+      return new TimeSlotNight(time).timeslot
+  }
+}
+
 export default Vue.extend({
   name: 'TopView',
   components: {
-    Building
+    Buildings,
+    AuthorLink
   },
   setup(props, context) {
+    const state = reactive({
+      snsLinks: AUTHOR_SNS
+    })
     const timeSlot = computed(() => {
-      const timeDifference = 9
-
       const time = +context.root.$dayjs().format('HH')
-      switch (true) {
-        case time < 5:
-          return 'night'
-        case time < 8:
-          return 'earlymorning'
-        case time < 12:
-          return 'morning'
-        case time < 17:
-          return 'evening'
-        case time < 19:
-          return 'sunset'
-        default:
-          return 'night'
-      }
+      return createTimeSlot(time)
     })
     return {
+      ...toRefs(state),
       timeSlot
     }
   }
@@ -99,17 +104,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import './assets/scss/_media-screen';
-.topview {
-  &-catch {
-    font-weight: 100;
-    line-height: 1.2;
-  }
-  &-avatar {
-    margin-top: -40px;
-  }
-}
-
 .timeslot-earlymorning {
   background: #f9c5d1;
   background-image: linear-gradient(315deg, #ffdfe6 0%, #b8b7fa 74%);
@@ -127,33 +121,16 @@ export default Vue.extend({
   background-color: #2a305a;
   background-image: linear-gradient(316deg, #2a305a 0%, #141050 74%);
 }
-
-.building-wrap {
-  display: flex;
-  align-items: flex-end;
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  overflow: hidden;
-  @include sm {
-    transform: scale(0.5);
-    transform-origin: bottom;
-    width: 200vw;
+.topview {
+  &-catch {
+    font-weight: 100;
+    line-height: 1.2;
   }
-  &.earlymorning,
-  &.sunset {
-    &:after {
-      content: '';
-      position: absolute;
-      display: block;
-      opacity: 0.2;
-      z-index: 4;
-      border-top: 10vw solid transparent;
-      border-right: 100vw solid #000;
-      border-bottom: 10vw solid #000;
-      border-left: 100vw solid transparent;
-    }
+  &-avatar {
+    margin-top: -40px;
   }
+}
+.authorLink + .authorLink {
+  margin-left: 10px;
 }
 </style>

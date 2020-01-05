@@ -210,13 +210,17 @@ export default createComponent({
   }
   &.sunset {
     .roof {
-      background: #d49f66;
+      background: #867563;
     }
     .building-inner {
-      background: #d49f66;
+      background: #867563;
       li {
         &.overtime {
-          background: #e2e8d6;
+          background: #c7a184;
+          box-shadow: none;
+          &:before {
+            display: none;
+          }
         }
       }
     }

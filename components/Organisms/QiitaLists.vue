@@ -24,7 +24,7 @@ import { qiitaModule } from '@/store/store'
 })
 export default class QiitLists extends Vue {
   private mounted(): void {
-    this.getQiitaListsFromStore()
+    this.getQiitaListsFromApi()
   }
   @Prop({ type: Number, required: false }) limit!: 0
 
@@ -32,7 +32,7 @@ export default class QiitLists extends Vue {
     return qiitaModule.qiitaLists
   }
 
-  private async getQiitaListsFromStore(): Promise<void> {
+  private async getQiitaListsFromApi(): Promise<void> {
     try {
       await qiitaModule.getQiitaUserData({
         type: 'user',

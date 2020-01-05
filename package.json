@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "serve:dev": "cross-env NODE_ENV=\"development\" nuxt --port 4000",
-    "serve:prod": "cross-env NODE_ENV=\"production\" nuxt --port 4000",
+    "serve:prod": "cross-env NODE_ENV=\"production\" nuxt --port 4444",
     "build:prod": "cross-env NODE_ENV=\"production\" nuxt build",
     "start:prod": "cross-env NODE_ENV=\"production\" nuxt start",
     "generate:prod": "cross-env NODE_ENV=\"production\" nuxt generate",
