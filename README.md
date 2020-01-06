@@ -26,5 +26,14 @@ $ yarn generate:prod
 
 ```
 
+## deployg on GCP CloudRun
+
+https://cloud.google.com/container-registry/docs/pushing-and-pulling?hl=ja
+
+# make image + add tag
+docker build ./ -t [HOSTNAME]/[PROJECT-ID]/[IMAGE]:[TAG]
+
+## push image
+gcloud docker -- push [IMAGE]
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
