@@ -5,7 +5,7 @@
       <h2 class="font-bold text-center mb-6 m-auto text-2xl">About</h2>
       <About :class="'lg:w-3/4'" />
     </section>
-    <section class=" p-2 lg:w-3/4 m-auto">
+    <section class="p-4 lg:w-3/4 m-auto">
       <h2 class="font-bold text-center mb-6 m-auto text-2xl">Qiita</h2>
       <qiita-lists :limit="3" />
       <BaseLink :link="'qiita'">Read More</BaseLink>

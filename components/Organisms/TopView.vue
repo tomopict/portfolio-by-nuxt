@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex h-screen flex-col justify-center items-center p-10 text-white topview"
+    class="w-full flex h-screen flex-col justify-center items-center p-10 text-white overflow-hidden topview"
     :class="`timeslot-${timeSlot}`"
   >
     <img
