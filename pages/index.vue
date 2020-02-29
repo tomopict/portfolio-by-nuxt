@@ -4,6 +4,7 @@
     <section class="p-4 pt-10 lg:mb-32 mb-10">
       <h2 class="font-bold text-center mb-6 m-auto text-2xl">About</h2>
       <About :class="'lg:w-3/4'" />
+      <TekitouChartComponent style="width:360px;"></TekitouChartComponent>
     </section>
     <section class="p-4 lg:w-3/4 m-auto">
       <h2 class="font-bold text-center mb-6 m-auto text-2xl">Qiita</h2>
@@ -19,6 +20,7 @@ import TopView from '@/components/Organisms/TopView.vue'
 import About from '@/components/Organisms/About.vue'
 
 import QiitaLists from '@/components/Organisms/QiitaLists.vue'
+import TekitouChartComponent from '@/components/Organisms/TekitouChartComponent.vue'
 
 interface weatherParamModels {
   p: string
@@ -30,7 +32,8 @@ export default Vue.extend({
   components: {
     TopView,
     QiitaLists,
-    About
+    About,
+    TekitouChartComponent
   }
   // asyncData() {
   //   return axios
