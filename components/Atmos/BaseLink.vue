@@ -1,5 +1,5 @@
 <template>
-  <div class="text-right">
+  <div>
     <nuxt-link :to="link">
       <slot></slot>
     </nuxt-link>
