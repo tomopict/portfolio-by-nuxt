@@ -8,7 +8,7 @@ COPY package*.json ./
 
 WORKDIR ${APP_ROOT}
 
-RUN npm install -g yarn && \
+RUN npm install --no-bin-links -g yarn && \
     # yarn global add @vue/cli
     yarn install --only=production
 
