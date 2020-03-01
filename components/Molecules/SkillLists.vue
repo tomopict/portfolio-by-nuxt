@@ -28,7 +28,7 @@ export default createComponent({
   name: 'SkillLists',
   props: {
     skillLists: {
-      type: Object,
+      type: Array,
       required: true
     }
   }
