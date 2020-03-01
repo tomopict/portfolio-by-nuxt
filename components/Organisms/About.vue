@@ -5,8 +5,8 @@
       <p>Author: Tomo</p>
     </section>
     <section class="skills mt-6 m-auto">
-      <div class="lg:flex">
-        <SkillLists :skill-lists="state.skills" :class="'mb-8 lg:w-2/3'"
+      <div class="lg:flex mb-20">
+        <SkillLists :skill-lists="state.skills" :class="'lg:w-2/3'"
           >Language</SkillLists
         >
         <ChartWrapper
