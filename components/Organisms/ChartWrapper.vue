@@ -37,25 +37,12 @@ export default createComponent({
     },
     chratOptions: {
       type: Object as () => ChartOptions
+    },
+    chartStyles: {
+      type: Object
     }
   },
-  setup() {
-    // グラフ用のデータ
-    const chartOption: ChartOptions = {
-      // アスペクト比を固定しないように変更
-      maintainAspectRatio: false
-    }
-
-    const chartStyles = {
-      height: '100%',
-      width: '100%'
-    }
-
-    return {
-      chartOption,
-      chartStyles
-    }
-  }
+  setup() {}
 })
 </script>
 <style lang="scss">
@@ -70,8 +57,6 @@ export default createComponent({
    * chartStylesを設定しているので、
    * height/wightが有効になる
    */
-  height: 40vh;
-  width: 80vw;
   margin: 0 auto;
 }
 </style>

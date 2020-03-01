@@ -5,21 +5,30 @@
       <p>Author: Tomo</p>
     </section>
     <section class="skills mt-6 m-auto">
-      <SkillLists :skill-lists="state.skills" :class="'mb-8'"
-        >Language</SkillLists
-      >
-      <ChartWrapper
-        :chart-type="'radar'"
-        :chart-data="chartAuthorData"
-        :chrat-options="chartOptions"
-      ></ChartWrapper>
-
-      <SkillLists :skill-lists="state.fw" :class="'mb-8'">FrameWork</SkillLists>
-      <ChartWrapper
-        :chart-type="'radar'"
-        :chart-data="chartFrameworkData"
-        :chrat-options="chartOptions"
-      ></ChartWrapper>
+      <div class="lg:flex">
+        <SkillLists :skill-lists="state.skills" :class="'mb-8 lg:w-2/3'"
+          >Language</SkillLists
+        >
+        <ChartWrapper
+          :chart-type="'radar'"
+          :chart-data="chartAuthorData"
+          :chrat-options="chartOptions"
+          :chart-styles="chartStyles"
+          :class="'lg:w-1/3'"
+        ></ChartWrapper>
+      </div>
+      <div class="lg:flex">
+        <SkillLists :skill-lists="state.fw" :class="'mb-8 lg:w-2/3'"
+          >FrameWork</SkillLists
+        >
+        <ChartWrapper
+          :chart-type="'radar'"
+          :chart-data="chartFrameworkData"
+          :chrat-options="chartOptions"
+          :chart-styles="chartStyles"
+          :class="'lg:w-1/3'"
+        ></ChartWrapper>
+      </div>
     </section>
   </div>
 </template>
@@ -48,6 +57,10 @@ export default createComponent({
       FrameworkSkillLabel: computed(() => AUTHOR_FW.map(s => s.label))
     })
 
+    const chartStyles = {
+      height: 'auto',
+      width: '95%'
+    }
     const chartAuthorData: ChartData = {
       labels: authorData.LanguageSkillLabel as Array<string>,
       datasets: [
@@ -88,6 +101,7 @@ export default createComponent({
     return {
       authorData,
       state,
+      chartStyles,
       chartAuthorData,
       chartFrameworkData,
       chartOptions
