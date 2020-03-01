@@ -30,7 +30,7 @@ $ yarn generate:prod
 
 https://cloud.google.com/container-registry/docs/pushing-and-pulling?hl=ja
 
-# make image + add tag
+## make image + add tag
 docker build ./ -t [HOSTNAME]/[PROJECT-ID]/[IMAGE]:[TAG]
 
 ## タグ付きイメージを Container Registry に push する
