@@ -36,16 +36,10 @@
 </template>
 
 <script lang="ts">
-import { reactive, createComponent } from '@vue/composition-api'
+import { createComponent } from '@vue/composition-api'
 
 export default createComponent({
-  name: 'NavItem',
-  setup() {
-    const state = reactive({
-      aa: ''
-    })
-    return { state }
-  }
+  name: 'NavItem'
 })
 </script>
 <style lang="scss" scoped>
