@@ -8,27 +8,90 @@
       <SkillLists :skill-lists="state.skills" :class="'mb-8'"
         >Language</SkillLists
       >
+      <ChartWrapper
+        :chart-type="'radar'"
+        :chart-data="chartAuthorData"
+        :chrat-options="chartOptions"
+      ></ChartWrapper>
+
       <SkillLists :skill-lists="state.fw" :class="'mb-8'">FrameWork</SkillLists>
+      <ChartWrapper
+        :chart-type="'radar'"
+        :chart-data="chartFrameworkData"
+        :chrat-options="chartOptions"
+      ></ChartWrapper>
     </section>
   </div>
 </template>
 
 <script lang="ts">
-import { reactive, createComponent } from '@vue/composition-api'
-import { AUTHOR_SKILL, AUTHOR_FW } from '~/constants/authordata'
+import { computed, reactive, createComponent } from '@vue/composition-api'
+
+// chart
+import { ChartData, ChartOptions } from 'chart.js'
 import SkillLists from '@/components/Molecules/SkillLists.vue'
+import ChartWrapper from '@/components/Organisms/ChartWrapper.vue'
+
+import { AUTHOR_SKILL, AUTHOR_FW } from '~/constants/authordata'
 
 export default createComponent({
   name: 'About',
   components: {
-    SkillLists
+    SkillLists,
+    ChartWrapper
   },
   setup() {
+    const authorData = reactive({
+      LanguageSkillStar: computed(() => AUTHOR_SKILL.map(s => s.star)),
+      LanguageSkillLabel: computed(() => AUTHOR_SKILL.map(s => s.label)),
+      FrameworkSkillStar: computed(() => AUTHOR_FW.map(s => s.star)),
+      FrameworkSkillLabel: computed(() => AUTHOR_FW.map(s => s.label))
+    })
+
+    const chartAuthorData: ChartData = {
+      labels: authorData.LanguageSkillLabel as Array<string>,
+      datasets: [
+        {
+          label: 'Language',
+          data: authorData.LanguageSkillStar as Array<number>,
+          backgroundColor: 'rgba(255, 99, 132, .2)'
+        }
+      ]
+    }
+
+    const chartFrameworkData: ChartData = {
+      labels: authorData.FrameworkSkillLabel as Array<string>,
+      datasets: [
+        {
+          label: 'FrameWork',
+          data: authorData.FrameworkSkillStar as Array<number>,
+          backgroundColor: 'rgba(255, 99, 132, .2)'
+        }
+      ]
+    }
+
+    const chartOptions: ChartOptions = {
+      scale: {
+        ticks: {
+          min: 0,
+          max: 5,
+          stepSize: 1
+        }
+      },
+      maintainAspectRatio: false
+    }
+
     const state = reactive({
       skills: AUTHOR_SKILL,
       fw: AUTHOR_FW
     })
-    return { state }
+    return {
+      authorData,
+      state,
+      chartAuthorData,
+      chartFrameworkData,
+      chartOptions
+    }
   }
 })
 </script>
