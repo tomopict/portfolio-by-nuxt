@@ -38,7 +38,8 @@ gcloud docker -- push [IMAGE]
 
 ## ディレクトリ構造
 
-─ README.md
+```
+├─ README.md
 ├── assets // 外部に露出する前提のassets
 │   ├── README.md // 各々のディレクトリ個別のReadMe
 │   ├── css
@@ -107,3 +108,4 @@ gcloud docker -- push [IMAGE]
 ├── tsconfig.json
 ├── yarn-error.log
 └── yarn.lock
+```
