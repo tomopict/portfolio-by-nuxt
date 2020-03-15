@@ -9,6 +9,9 @@ export default {
    */
   head: {
     title: process.env.npm_package_name || '',
+    htmlAttrs: {
+      lang: 'ja'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -35,6 +38,7 @@ export default {
     '@plugins/globalComponents.js',
     '@/plugins/composition-api',
     '@/plugins/dayjs/day.js',
+    '@/plugins/vuechart.js',
     '@/plugins/font-awesome',
     { src: '@/plugins/intersection-observer', ssr: false }
   ],
@@ -48,7 +52,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     '@nuxtjs/dotenv'
   ],
   extends: ['@nuxtjs/eslint-config-typescript'],

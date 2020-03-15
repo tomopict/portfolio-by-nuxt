@@ -4,56 +4,34 @@
     <section class="p-4 pt-10 lg:mb-32 mb-10">
       <h2 class="font-bold text-center mb-6 m-auto text-2xl">About</h2>
       <About :class="'lg:w-3/4'" />
-      <TekitouChartComponent style="width:360px;"></TekitouChartComponent>
     </section>
     <section class="p-4 lg:w-3/4 m-auto">
       <h2 class="font-bold text-center mb-6 m-auto text-2xl">Qiita</h2>
       <qiita-lists :limit="3" />
-      <BaseLink :link="'qiita'">Read More</BaseLink>
+      <BaseLink :link="'qiita'" :class="'text-right'">Read More</BaseLink>
     </section>
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { createComponent } from '@vue/composition-api'
 import TopView from '@/components/Organisms/TopView.vue'
 import About from '@/components/Organisms/About.vue'
-
 import QiitaLists from '@/components/Organisms/QiitaLists.vue'
-import TekitouChartComponent from '@/components/Organisms/TekitouChartComponent.vue'
 
 interface weatherParamModels {
   p: string
   APPID: string
 }
 
-export default Vue.extend({
+export default createComponent({
   name: 'Index',
   components: {
     TopView,
     QiitaLists,
-    About,
-    TekitouChartComponent
-  }
-  // asyncData() {
-  //   return axios
-  //     .get(`http://zipcloud.ibsnet.co.jp/api/search?zipcode=7830060`)
-  //     .then(res => {
-  //       return { answer: res.data.status }
-  //     })
-  // return fetchWeatherData({
-  //   q: 'tokyo',
-  //   APPID: `${process.env.WEATHER}`
-  // })
-  //   .then(res => {
-  //     return {
-  //       weatherData: res.data
-  //     }
-  //   })
-  //   .catch(e => {
-  //     console.log(e)
-  //   })
-  // }
+    About
+  },
+  setup() {}
 })
 </script>
 
