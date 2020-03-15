@@ -54,6 +54,12 @@ export default {
     '@nuxtjs/axios',
     // '@nuxtjs/pwa',
     '@nuxtjs/dotenv'
+    // [
+    //   'nuxt-env',
+    //   {
+    //     keys: ['QIITA_TOKEN']
+    //   }
+    // ]
   ],
   extends: ['@nuxtjs/eslint-config-typescript'],
   devModules: ['@nuxtjs/tailwindcss'],
