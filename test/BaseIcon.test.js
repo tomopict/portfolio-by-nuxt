@@ -15,7 +15,7 @@ const factory = propsData => {
 }
 
 describe('BaseIcon', () => {
-  it('renders a BaseIcon', () => {
+  it('rendering BaseIcon', () => {
     const wrapper = factory()
     console.log(wrapper.html())
   })
