@@ -44,7 +44,7 @@ export default createComponent({
 })
 </script>
 <style lang="scss" scoped>
-@import './assets/scss/_media-screen';
+@import '@/assets/scss/_media-screen';
 
 .building-wrap {
   display: flex;
