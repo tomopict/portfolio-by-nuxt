@@ -8,8 +8,8 @@ export default class RadarChartComponent extends Mixins(
   Radar,
   mixins.reactiveProp
 ) {
-  @Prop({ default: {} }) chartData: Chart.ChartData
-  @Prop({ default: {} }) options: Chart.ChartOptions
+  @Prop({ default: {} }) chartData!: Chart.ChartData
+  @Prop({ default: {} }) options?: Chart.ChartOptions
 
   public mounted() {
     this.renderChart(this.chartData, this.options)

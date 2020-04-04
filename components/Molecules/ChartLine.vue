@@ -34,8 +34,8 @@ export default class LineChartComponent extends Mixins(
   Line,
   mixins.reactiveProp
 ) {
-  @Prop({ default: {} }) chartData: Chart.ChartData
-  @Prop({ default: {} }) options: Chart.ChartOptions
+  @Prop({ default: {} }) chartData!: Chart.ChartData
+  @Prop({ default: {} }) options?: Chart.ChartOptions
 
   public mounted() {
     this.renderChart(this.chartData, this.options)

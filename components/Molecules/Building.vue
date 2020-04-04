@@ -31,7 +31,7 @@ export default createComponent({
 </script>
 
 <style scoped lang="scss">
-@import './assets/scss/_media-screen';
+@import '@/assets/scss/_media-screen';
 @mixin random-bgr() {
   background: rgba(255, 255, 100, (random(100) / 20));
 }
