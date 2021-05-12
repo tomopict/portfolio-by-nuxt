@@ -24,7 +24,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/tailwindcss": "^1.1.2",
     "@vue/composition-api": "^0.3.2",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "cross-env": "^6.0.3",
     "dayjs": "^1.8.17",
     "eslint": "^6.4.0",
