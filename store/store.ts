@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import {
-    Qiita
-} from '@/store/modules/qiita.ts'
-
 import { getModule } from 'vuex-module-decorators'
+import { Qiita } from '@/store/modules/qiita'
+
 Vue.use(Vuex)
 
 export type State = {

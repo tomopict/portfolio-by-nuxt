@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
+    "noImplicitAny": false,
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
@@ -18,6 +19,13 @@
     "types": ["@types/node", "@nuxt/types"]
   },
   "exclude": ["node_modules"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
   "files": [
     "plugins/dayjs/dayjs.d.ts"
   ]

@@ -4,7 +4,7 @@ export default function usePromise(fn: any) {
   const results = ref(null)
   const error = ref(null)
   const loading = ref(false)
-  const createPromise = async(...arg) => {
+  const createPromise = async (...arg) => {
     loading.value = true
     error.value = null
     results.value = null
@@ -18,4 +18,3 @@ export default function usePromise(fn: any) {
   }
   return { results, error, loading, createPromise }
 }
-

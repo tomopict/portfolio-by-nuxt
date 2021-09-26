@@ -2,7 +2,7 @@ FROM node:10
 
 ENV PORT 8080
 ENV HOST 0.0.0.0
-ENV APP_ROOT /
+ENV APP_ROOT /usr/src/app
 ENV TZ 'Asia/Tokyo'
 
 COPY package*.json ./
